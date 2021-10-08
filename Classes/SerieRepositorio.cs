@@ -41,5 +41,23 @@ namespace DioSeriesLib
             return listaSerie[id];
         }
 
+        //Itera sobre a lista de series e retorna apenas
+        //as resultantes da busca pelo id de Gênero;
+        public List<Serie> BuscaPorGenero(int idGenero)
+        {
+            List<Serie> buscaResult = new List<Serie>();
+
+            for(int i = 0; i  < listaSerie.Count; i++ )
+            {
+                if( Enum.GetName(typeof(Genero),listaSerie[i].retornaGenero() )  == Enum.GetName(typeof(Genero), idGenero))
+                {
+                    buscaResult.Add(listaSerie[i]);
+                }
+             
+            }
+
+            return buscaResult;
+        }
+ 
     }
 }

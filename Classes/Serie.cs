@@ -50,6 +50,11 @@ namespace DioSeriesLib
             return this.Id;
         }
 
+        public Genero retornaGenero()
+        {
+            return this.Genero;
+        }
+
         public bool retornaExcluido()
         {
             return this.Excluido;

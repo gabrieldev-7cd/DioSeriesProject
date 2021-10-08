@@ -29,6 +29,9 @@ namespace DioSeriesLib
                     case "5":
                         VisualizarSerie();
                         break;
+                    case "6":
+                        BuscaGenero();
+                        break;
                     case "C":
                         Console.Clear();
                         break;
@@ -107,7 +110,33 @@ namespace DioSeriesLib
             );
 
             repositorio.Atualiza(indiceSerie, atualizaSerie);
+        }
 
+        public static void BuscaGenero()
+        {
+
+            Console.WriteLine("-- Lista de Gêneros --\n\n");
+            foreach (int i in Enum.GetValues(typeof(Genero)))
+            {
+                Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genero), i));
+            }
+
+            Console.Write("Digite o ID do Gênero: ");
+            int genero = int.Parse(Console.ReadLine());
+            var resultadoBusca = repositorio.BuscaPorGenero(genero);
+
+            if(resultadoBusca.Count > 0)
+            {
+                Console.WriteLine("\n-- Lista de Series deste Gênero --\n\n");
+                for(int i = 0; i < resultadoBusca.Count; i++)
+                {
+                    Console.WriteLine("\n\n"+resultadoBusca[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n\nNenhuma Série deste gênero foi encontrada!");
+            }
         }
 
         public static void ExcluirSerie()
@@ -164,6 +193,7 @@ namespace DioSeriesLib
                 "3 - Atualizar Série\n" +
                 "4 - Excluir Série\n" +
                 "5 - Visualizar Série\n" +
+                "6 - Buscar por gênero\n" +
                 "C - Limpar Tela\n" +
                 "X - Sair\n"
             );
